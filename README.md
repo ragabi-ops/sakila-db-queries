@@ -356,6 +356,7 @@ Result:
 
 Query: 
 ```sql
+-- Subquery
 select film_id, title, release_year
 from film
 where film_id in (
@@ -367,6 +368,16 @@ where film_id in (
 		where name = 'Family'
 	)
 );
+
+-- Join
+
+select flm.film_id, flm.title, flm.release_year
+from film flm
+join film_category film_cat
+on flm.film_id = film_cat.film_id
+join category cate
+on film_cat.category_id = cate.category_id
+where cate.name = 'Family';
 ```
 Result:
 
@@ -406,7 +417,7 @@ join (
 group by cus.store_id
 ) B
 on A.store_id = B.store_id
-order by a.store_id;
+order by A.store_id;
 ```
 Result:
 
@@ -435,7 +446,7 @@ join (
 	group by cus.store_id
 ) B
 on A.store_id = B.store_id
-order by a.store_id;
+order by A.store_id;
 ```
 Result:
 
